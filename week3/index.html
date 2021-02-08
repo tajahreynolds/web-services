@@ -1,45 +1,53 @@
-<!-- -->
+<!-- TaJah Reynolds -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assignment 2/8</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <script defer>
-        var key, value;
-        var data = JSON.stringify({"key":key,"value":$("#value").val(),"password":"test","uid":"campbest"});
-        var settings = {
-          "url": "http://ceclnx01.cec.miamioh.edu/~campbest/cse451-campbest-web-public-2021/kv/kv.php/api/v1/info",
-          "method": "PUT",
-          "timeout": 0,
-          "headers": {
-            "Content-Type": "application/json"
-          },
-          "data": data,
-        };
-
-        $.ajax(settings).done(function (response) {
-          console.log(response);
-        });
-        
-        $("form").submit(function(e){
-            e.preventDefault();
-            console.log("test")
-        });
-    </script>
 </head>
 
 <body>
-    <form>
+    <form target="_blank">
         <label for="key">Key:</label><br>
-        <input type="text" id="key"><br>
+        <input type="text" id="key" name="key"><br>
         <label for="value">Value:</label><br>
-        <input type="text" id="value"><br><br>
+        <input type="text" id="value" name="value"><br><br>
         <input type="submit">
     </form>
     
+    <script defer>
+        
+        if (!key || ! value) {
+            console.error("Null value")
+        } else {
+            console.log($("#key")[0].value);
+            console.log($("#value")[0].value);
 
+            var data = JSON.stringify({"key":key,"value":value,"password":"test","uid":"campbest"});
+            var settings = {
+              "url": "http://ceclnx01.cec.miamioh.edu/~campbest/cse451-campbest-web-public-2021/kv/kv.php/api/v1/info",
+              "method": "PUT",
+              "timeout": 0,
+              "headers": {
+                "Content-Type": "application/json"
+              },
+              "data": data,
+            };
+
+            $.ajax(settings).done(function (response) {
+              console.log(response);
+            });
+
+            $("form").submit(function(e){
+                e.preventDefault();
+            });
+            
+        }
+        
+        
+    </script>
 </body>
 </html>
