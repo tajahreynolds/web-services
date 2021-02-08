@@ -1,0 +1,8 @@
+Script started on 2021-02-08 13:25:16-05:00 [TERM="cygwin" TTY="/dev/pts/20" COLUMNS="110" LINES="55"]
+{"status":"OK","msg":"added","agent":"curl\/7.68.0"}
+{"status":"OK","msg":"added","agent":"curl\/7.68.0"}
+{"status":"OK","msg":"","agent":"curl\/7.68.0","value":"value1"}
+{"status":"OK","msg":"","agent":"curl\/7.68.0","value":"value2"}
+{"status":"OK","msg":"","agent":"curl\/7.68.0"}
+{"status":"OK","msg":"","agent":"curl\/7.68.0"}
+Script done on 2021-02-08 13:25:16-05:00 [COMMAND_EXIT_CODE="0"]
