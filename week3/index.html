@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <form target="_blank">
+    <form method="post" target="_blank" onsubmit="func()">
         <label for="key">Key:</label><br>
         <input type="text" id="key" name="key"><br>
         <label for="value">Value:</label><br>
@@ -18,35 +18,38 @@
         <input type="submit">
     </form>
     
-    <script defer>
-        
-        if (!key || ! value) {
-            console.error("Null value")
-        } else {
-            console.log($("#key")[0].value);
-            console.log($("#value")[0].value);
-
-            var data = JSON.stringify({"key":key,"value":value,"password":"test","uid":"campbest"});
-            var settings = {
-              "url": "http://ceclnx01.cec.miamioh.edu/~campbest/cse451-campbest-web-public-2021/kv/kv.php/api/v1/info",
-              "method": "PUT",
-              "timeout": 0,
-              "headers": {
-                "Content-Type": "application/json"
-              },
-              "data": data,
-            };
-
-            $.ajax(settings).done(function (response) {
-              console.log(response);
-            });
-
+    <script>
+        function func() {
+            // stop form submit
             $("form").submit(function(e){
                 e.preventDefault();
             });
-            
+            // checking if not null
+            var key = '"' + ($("#key")[0].value) + '"';
+            var val = '"' + ($("#value")[0].value) + '"';
+            if (!key || !value) {
+                console.error("Null value submitted")
+            } else {
+
+                // store key value pair in json string
+                var data = JSON.stringify({"key":key,"value":val,"password":"test","uid":"campbest"});
+                // set ajax parameters
+                var settings = {
+                  "url": "http://ceclnx01.cec.miamioh.edu/~campbest/cse451-campbest-web-public-2021/kv/kv.php/api/v1/info",
+                  "method": "PUT",
+                  "timeout": 0,
+                  "headers": {
+                    "Content-Type": "application/json"
+                  },
+                  "data": data,
+                };
+                // send data and process response
+                $.ajax(settings).done(function (response) {
+                  console.log(response);
+                });
+
+            }
         }
-        
         
     </script>
 </body>
