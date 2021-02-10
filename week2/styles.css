@@ -1,3 +1,7 @@
+/* TaJah Reynolds
+    CSE451 Week2 Assignment
+    02/09/2021
+*/
 footer {
     height: 50px;
     width: 100%;
@@ -9,3 +13,14 @@ footer h2 {
     text-align: center;
 }
 
+img {
+    width: 100%
+}
+
+table,  td{
+    margin-top: 20px;
+    text-align: center;
+    width: 50%;
+    border: solid 2px;
+    border-collapse: collapse;
+}
