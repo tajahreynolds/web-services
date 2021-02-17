@@ -14,7 +14,7 @@ if (!isset($_SESSION['name'])) {
 </head>
 
 <body>
-    <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
+    <form method="post" action="<?php echo $_SERVER[PHP_SELF]?>">
         Username: <input type="text" name="username">
         <input type="submit">
     </form>
