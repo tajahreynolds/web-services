@@ -1,15 +1,30 @@
 <?php
 session_start();
+if (!isset($_SESSION['name'])) {
+    $name = "";
+} 
 ?>
 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>index</title>
 </head>
 
 <body>
-    Hello World!
+    <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
+        Username: <input type="text" name="username">
+        <input type="submit">
+    </form>
 </body>
 </html>
+
+<?php else {
+    $name = $_SESSION['name'];
+}
+
+?>
+
+
