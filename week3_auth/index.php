@@ -1,8 +1,6 @@
 <?php
-session_start();
-if (!isset($_SESSION['name'])) {
-    $name = "";
-} 
+    session_start();
+    if (!isset($_SESSION['username'])):
 ?>
 
 <!DOCTYPE html>
@@ -21,10 +19,8 @@ if (!isset($_SESSION['name'])) {
 </body>
 </html>
 
-<?php else {
-    $name = $_SESSION['name'];
-}
-
+<?php 
+    endif;
 ?>
 
 
