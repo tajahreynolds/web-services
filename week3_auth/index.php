@@ -1,6 +1,5 @@
 <?php
-    session_start();
-    if (!isset($_SESSION['username'])):
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -12,15 +11,12 @@
 </head>
 
 <body>
-    <form method="post" action="<?php echo $_SERVER[PHP_SELF]?>">
-        Username: <input type="text" name="username">
+    <form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
+        Username: <input type="text" name="username"><br>
+        Password: <input type="text" name="password"><br>
         <input type="submit">
     </form>
 </body>
 </html>
-
-<?php 
-    endif;
-?>
 
 
