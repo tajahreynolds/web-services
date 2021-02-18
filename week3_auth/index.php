@@ -29,6 +29,7 @@ if (isset($_REQUEST['username']) && isset($_REQUEST['password'])) {
     $password = hash('sha256',$_REQUEST['password']);
     $_SESSION['username'] = $username;
     $_SESSION['password'] = $password;
+    echo $username . " " > $password;
 }
 require_once("passwords.php");
 $mysqli = mysqli_connect($host, $user, $pass, $db);
