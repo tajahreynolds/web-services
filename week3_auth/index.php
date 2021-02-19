@@ -62,22 +62,7 @@ if (isset($_POST['username']) && isset($_POST['password'] && $_POST['username'] 
 </body>
 </html>
 
-<?php
 
-if ($error != "") {
-        print "<div>$error</div>";
-        die;
-}
-if ($uid != "") {
-    //print button to display.php
-    print "login success"
-}
-else {
-    //display form
-    print "login fail"
-}
-
-?>
 
 
 
