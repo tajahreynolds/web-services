@@ -70,7 +70,6 @@ if (isset($_POST['username']) && isset($_POST['password']) && $_POST['username']
         }
         $testpass = md5($_POST['password']);
         $stmt->fetch();
-        print($testpass . " " . $storedPass);
             if ($testpass == $storedPass) {
                 //good password -> set session  
 		        $username = $_POST['username'];
@@ -80,9 +79,8 @@ if (isset($_POST['username']) && isset($_POST['password']) && $_POST['username']
                 exit;
             } else {
                 // bad password display error
-                $error = "invalid password";
+                $error = "invalid password: " . $testpass . "!=" . $storedPass);
                 print($error);
-                //show form and populate username
             }
 
     } else {
