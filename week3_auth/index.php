@@ -43,7 +43,7 @@ if (isset($_POST['username']) && isset($_POST['password']) && $_POST['username']
         print $mysqli->error;
         return;
     }
-    if (!$stmt->execute() {
+    if (!$stmt->execute()) {
         print $mysqli->error;
         return;
     }
@@ -51,7 +51,7 @@ if (isset($_POST['username']) && isset($_POST['password']) && $_POST['username']
         print "Failed to bind output";
         return;
     }
-    $testpass = md5($_POST['password');
+    $testpass = md5($_POST['password']);
     while ($stmt->fetch()) {
         if ($testpass == $storedPass){
             //good password -> set session  
