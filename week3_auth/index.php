@@ -35,7 +35,7 @@ if (isset($_POST['username']) && isset($_POST['password']) && $_POST['username']
         die;
     }
     // select password from user where user=$_POST['user'] -> do it ina prepare 
-    if ($stmt = $mysqli->prepare("select password from users where user=?")) {
+    if ($stmt = $mysqli->prepare("select password from users where name=?")) {
         if (!$stmt->bind_param("s",$username)) { 
             print $mysqli->error;
             return;
@@ -52,7 +52,8 @@ if (isset($_POST['username']) && isset($_POST['password']) && $_POST['username']
         while ($stmt->fetch()) {
             if ($testpass == $storedPass){
                 //good password -> set session  
-                $username = $_SESSION['username'];
+		    $username = $_SESSION['username'];
+		    print($username);
             }                                                                          
             else {
                 $error = "invalid pass";
