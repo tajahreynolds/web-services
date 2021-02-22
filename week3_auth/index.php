@@ -50,13 +50,13 @@ if (isset($_POST['username']) && isset($_POST['password']) && $_POST['username']
         }
         $testpass = md5($_POST['password']);
         while ($stmt->fetch()) {
-            if ($testpass == $storedPass){
+            if ($testpass == $storedPass):
                 //good password -> set session  
 		        $username = $_SESSION['username'];
                 // redirect to display.php
                 header("Location: display.php");
                 exit;
-            } else:
+            else:
                 // bad password display error
                 $error = "invalid pass";
                 print($error);
