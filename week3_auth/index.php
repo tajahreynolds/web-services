@@ -26,7 +26,7 @@ if (!isset($_SESSION['username'])):
 
 endif;
 
-    if (isset($_POST['username']) && isset($_POST['password'] && $_POST['username'] != "" && $_POST['password'] != "") {                                                                                                                 
+if (isset($_POST['username']) && isset($_POST['password']) && $_POST['username'] != "" && $_POST['password'] != "") {                                                                                                                 
     // yes, check db  
     require_once("passwords.php");
     $mysqli = mysqli_connect($host, $user, $pass, $db);
