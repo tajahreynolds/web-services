@@ -27,7 +27,7 @@ if (!isset($_SESSION['username'])):
 endif;
 
     $username = $_SESSION['username'];
-
+    print($username);
                                                                                                                                                                                                        
                                                                                                                  
 ?>
