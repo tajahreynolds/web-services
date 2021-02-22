@@ -36,31 +36,33 @@ if (isset($_POST['username']) && isset($_POST['password']) && $_POST['username']
     }
     // select password from user where user=$_POST['user'] -> do it ina prepare 
     if ($stmt = $mysqli->prepare("select password from users where user=?")) {
+        if (!$stmt->bind_param("s",$username)) { 
+            print $mysqli->error;
+            return;
+        }
+        if (!$stmt->execute()) {
+            print $mysqli->error;
+            return;
+        }
+        if (!$stmt->bind_result($storedPass)) {
+            print "Failed to bind output";
+            return;
+        }
+        $testpass = md5($_POST['password']);
+        while ($stmt->fetch()) {
+            if ($testpass == $storedPass){
+                //good password -> set session  
+                $username = $_SESSION['username'];
+            }                                                                          
+            else {
+                $error = "invalid pass";
+            }
+        }
+    } else {
         print "failed to prepare " . $mysqli->error;
         return;
     }
-    if (!$stmt->bind_param("s",$username)) { 
-        print $mysqli->error;
-        return;
-    }
-    if (!$stmt->execute()) {
-        print $mysqli->error;
-        return;
-    }
-    if (!$stmt->bind_result($storedPass)) {
-        print "Failed to bind output";
-        return;
-    }
-    $testpass = md5($_POST['password']);
-    while ($stmt->fetch()) {
-        if ($testpass == $storedPass){
-            //good password -> set session  
-            $username = $_SESSION['username'];
-        }                                                                          
-        else {
-            $error = "invalid pass";
-        }
-    }
+    
 }   
                                                                                                                                                                                              
                                                                                                                  
