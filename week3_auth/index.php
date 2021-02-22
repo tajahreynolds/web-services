@@ -1,7 +1,7 @@
 <?php
 // start the session
 session_start();
-if (!isset($_SESSION['username'])):
+if (!isset($_SESSION['username']) && !isset($_POST['username'])):
     $username = "";
 
 ?>
@@ -16,6 +16,26 @@ if (!isset($_SESSION['username'])):
 <body>
     <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
         Username: <input type="text" name="username"><br>
+        Password: <input type="password" name="password"><br>
+        <input type="submit">
+    </form>
+    
+</body>
+</html>
+
+<?php else if (isset($_POST['username'])): ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+</head>
+
+<body>
+    <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
+        Username: <input type="text" name="username" value="<?php echo $_POST['username']?>"><br>
         Password: <input type="password" name="password"><br>
         <input type="submit">
     </form>
@@ -66,19 +86,7 @@ if (isset($_POST['username']) && isset($_POST['password']) && $_POST['username']
                 $error = "invalid password";
                 print($error);
                 //show form and populate username
-?>
-
-<body>
-    <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
-        Username: <input type="text" name="username" value=<?php echo $_POST['username'];?>><br>
-        Password: <input type="password" name="password"><br>
-        <input type="submit">
-    </form>
-    
-</body>
-</html>
-                
-<?php       endif;
+            endif;
 
     } else {
         print "failed to prepare " . $mysqli->error;
