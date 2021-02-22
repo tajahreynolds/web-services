@@ -77,7 +77,7 @@ if (isset($_POST['username']) && isset($_POST['password']) && $_POST['username']
 
 <body>
     <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
-        Username: <input type="text" name="username" value=$_POST['username']><br>
+        Username: <input type="text" name="username" value=<?php echo $_POST['username'];?>><br>
         Password: <input type="password" name="password"><br>
         <input type="submit">
     </form>
