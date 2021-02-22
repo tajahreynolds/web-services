@@ -56,7 +56,7 @@ if (isset($_POST['username']) && isset($_POST['password']) && $_POST['username']
     }
     // select password from user where user=$_POST['user'] -> do it ina prepare 
     if ($stmt = $mysqli->prepare("select password from users where name=?")) {
-        if (!$stmt->bind_param("s",$username)) { 
+        if (!$stmt->bind_param("s",$_POST['username'])) { 
             print $mysqli->error;
             return;
         }
@@ -79,7 +79,7 @@ if (isset($_POST['username']) && isset($_POST['password']) && $_POST['username']
                 exit;
             } else {
                 // bad password display error
-                $error = "invalid password: " . $testpass . "!=" . $storedPass;
+                $error = "Invalid Password";
                 print($error);
             }
 
