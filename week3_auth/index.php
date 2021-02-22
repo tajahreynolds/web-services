@@ -52,12 +52,35 @@ if (isset($_POST['username']) && isset($_POST['password']) && $_POST['username']
         while ($stmt->fetch()) {
             if ($testpass == $storedPass){
                 //good password -> set session  
-		    $username = $_SESSION['username'];
-		    print($username);
-            }                                                                          
-            else {
+		        $username = $_SESSION['username'];
+                // redirect to display.php
+                header("Location: display.php");
+                exit;
+            } else:
+                // bad password display error
                 $error = "invalid pass";
-            }
+                print($error);
+                //show form and populate username
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+</head>
+
+<body>
+    <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
+        Username: <input type="text" name="username" value=$_POST['username']><br>
+        Password: <input type="password" name="password"><br>
+        <input type="submit">
+    </form>
+    
+</body>
+</html>
+                
+<?php endif;
         }
     } else {
         print "failed to prepare " . $mysqli->error;
