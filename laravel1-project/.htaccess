@@ -1,4 +1,0 @@
-RewriteEngine on
-RewriteRule ".env" [F]
-RewriteRule "^/public/" - [L]
-RewriteRule ".*" [F]
