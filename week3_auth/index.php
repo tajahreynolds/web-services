@@ -56,22 +56,18 @@ if (isset($_POST['username']) && isset($_POST['password']) && $_POST['username']
     }
     // select password from user where user=$_POST['user'] -> do it ina prepare 
     if ($stmt = $mysqli->prepare("select password from users where name=?")) {
-        print('bind');
         if (!$stmt->bind_param("s",$username)) { 
             print $mysqli->error;
             return;
         }
-        print('exec');
         if (!$stmt->execute()) {
             print $mysqli->error;
             return;
         }
-        print('bind');
         if (!$stmt->bind_result($storedPass)) {
             print "Failed to bind output";
             return;
         }
-        print('validate');
         $testpass = md5($_POST['password']);
         $stmt->fetch();
             if ($testpass == $storedPass):
