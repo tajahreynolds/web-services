@@ -79,7 +79,7 @@ if (isset($_POST['username']) && isset($_POST['password']) && $_POST['username']
                 exit;
             } else {
                 // bad password display error
-                $error = "invalid password: " . $testpass . "!=" . $storedPass);
+                $error = "invalid password: " . $testpass . "!=" . $storedPass;
                 print($error);
             }
 
