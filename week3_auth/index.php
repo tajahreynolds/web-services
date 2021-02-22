@@ -26,9 +26,8 @@ if (!isset($_SESSION['username'])):
 
 endif;
 
-    $username = $_SESSION['username'];
-
-                                                                                                                                                                                                       
+    $username = (isset($_SESSION['username']) ? $_SESSION['username'] : null);
+    print($username);                                                                                                                                                                                                   
                                                                                                                  
 ?>
 
