@@ -36,29 +36,34 @@ if (isset($_POST['username']) && isset($_POST['password']) && $_POST['username']
     }
     // select password from user where user=$_POST['user'] -> do it ina prepare 
     if ($stmt = $mysqli->prepare("select password from users where name=?")) {
+        print('bind');
         if (!$stmt->bind_param("s",$username)) { 
             print $mysqli->error;
             return;
         }
+        print('exec');
         if (!$stmt->execute()) {
             print $mysqli->error;
             return;
         }
+        print('bind');
         if (!$stmt->bind_result($storedPass)) {
             print "Failed to bind output";
             return;
         }
+        print('validate');
         $testpass = md5($_POST['password']);
-        while ($stmt->fetch()) {
+        $stmt->fetch();
             if ($testpass == $storedPass):
                 //good password -> set session  
-		        $username = $_SESSION['username'];
+		        $username = $_POST['username'];
+                print($username);
                 // redirect to display.php
                 header("Location: display.php");
                 exit;
             else:
                 // bad password display error
-                $error = "invalid pass";
+                $error = "invalid password";
                 print($error);
                 //show form and populate username
 ?>
@@ -80,8 +85,8 @@ if (isset($_POST['username']) && isset($_POST['password']) && $_POST['username']
 </body>
 </html>
                 
-<?php endif;
-        }
+<?php       endif;
+
     } else {
         print "failed to prepare " . $mysqli->error;
         return;
