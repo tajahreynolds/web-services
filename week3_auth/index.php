@@ -23,7 +23,7 @@ if (!isset($_SESSION['username']) && !isset($_POST['username'])):
 </body>
 </html>
 
-<?php else if (isset($_POST['username'])): ?>
+<?php elseif (isset($_POST['username'])): ?>
 
 <!DOCTYPE html>
 <html lang="en">
