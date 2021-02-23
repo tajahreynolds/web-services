@@ -46,6 +46,12 @@ if (!isset($_SESSION['username']) && !isset($_POST['username'])):
 
 endif;
 
+if (isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+    header("Location: display.php");
+    exit;
+}
+
 if (isset($_POST['username']) && isset($_POST['password']) && $_POST['username'] != "" && $_POST['password'] != "") {                                                                                                                 
     // yes, check db  
     require_once("passwords.php");
