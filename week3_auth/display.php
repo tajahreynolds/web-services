@@ -3,6 +3,7 @@
 session_start();
 if (!isset($_SESSION['username'])){
     header("Location: index.php");
+    error_log("logout from display: no session username set");
     exit();
 }
 $username = $_SESSION['username'];
