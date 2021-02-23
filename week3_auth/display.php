@@ -28,7 +28,7 @@ $username = $_SESSION['username'];
         <div id="msg"></div>
     </div>
 
-    <script defer>
+    <script>
         // set ajax params
         let settings = {
             "url": "http://ceclnx01.cec.miamioh.edu/~campbest/cse451-campbest-web-public-2021/week2/week2-rest.php/api/v1/info",
@@ -50,19 +50,15 @@ $username = $_SESSION['username'];
             };
             // send query and process response
             $.ajax(settings).done(function (response) {
-                $("#pairs").append("<tr><td>" + key + "</td><td>" + response.value + "</td><td><button class='delete' key=" + key + ">Delete</button></td></tr>");
+                $("#pairs").append("<tr><td>" + key + "</td><td>" + response.value + "</td><td><button class='delete' key=" + key + " onclick='deleteEvent()'>Delete</button></td></tr>");
             }).fail(function (error) {
                 console.error(error);
             });
         }
         // function to delete kv pairs from http://campbest.451.csi.miamioh.edu/button.php
-        function deleteEvent(event) {
+        function deleteEvent() {
             console.log("key is " + $(this).attr('key'));
             $("#msg").append("<ul>Key is " + $(this).attr('key') + "</ul>");
-        }
-        var delButton = document.querySelectorAll('.delete');
-        for (var i = 0; i < delButton.length; i++) {
-            delButton[i].addEventListener('click', deleteEvent);
         }
 </script>
 </body>
