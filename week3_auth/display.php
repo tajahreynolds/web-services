@@ -65,7 +65,7 @@ $username = $_SESSION['username'];
                 $("#pairs").append("<tr><td>" + key + "</td><td>" + response.value + "</td><td><button class='delete' key=" + key + " onclick='deleteEvent()'>Delete</button></td></tr>");
             }).fail(function (error) {
                 console.error(error);
-                <?php error_log(error) ?>
+                <?php error_log("unable to query") ?>
             });
         }
         
