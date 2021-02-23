@@ -14,7 +14,16 @@ $username = $_SESSION['username'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Display</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
-
+    <script>
+        // function to delete kv pairs from http://campbest.451.csi.miamioh.edu/button.php
+        function deleteEvent(event) {
+            console.log("key is " + $(this).attr('key'));
+            $("#msg").append("<ul>Key is " + $(this).attr('key') + "</ul>");
+        }
+        $(document).ready(() => {
+                $(".delete").click(deleteEvent);
+        });
+    </script>
     
 </head>
 
@@ -55,16 +64,8 @@ $username = $_SESSION['username'];
                 console.error(error);
             });
         }
-        // function to delete kv pairs from http://campbest.451.csi.miamioh.edu/button.php
-        function deleteEvent() {
-            var attr = $(this).attr('key');
-            // For some browsers, `attr` is undefined; for others, `attr` is false. Check for both.
-            if (typeof attr !== typeof undefined && attr !== false) {
-                // Element has this attribute
-                console.log("key is " + this.hasAttribute('key'));
-                $("#msg").append("<ul>Key is " + this.key);
-            }
-        }
+        
+        
 </script>
 </body>
 </html>
