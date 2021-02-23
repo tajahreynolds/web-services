@@ -60,9 +60,10 @@ $username = $_SESSION['username'];
             console.log("key is " + $(this).attr('key'));
             $("#msg").append("<ul>Key is " + $(this).attr('key') + "</ul>");
         }
-        $(document).ready(() => {
-            $(".delete").click(deleteEvent);
-        });
+        var delButton = document.querySelectorAll('.delete');
+        for (var i = 0; i < delButton.length; i++) {
+            delButton[i].addEventListener('click', deleteEvent);
+        }
 </script>
 </body>
 </html>
