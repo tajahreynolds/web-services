@@ -27,7 +27,7 @@ $username = $_SESSION['username'];
     
 </head>
 
-<body>
+<body onbeforeunload="<?php error_log("logout"); ?>">
     <header>User: <?php print($username) ?></header>
     <div>
         <table>

@@ -48,6 +48,7 @@ endif;
 
 if (isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
+    error_log("login from session");
     header("Location: display.php");
     exit;
 }
@@ -80,12 +81,14 @@ if (isset($_POST['username']) && isset($_POST['password']) && $_POST['username']
                 //good password -> set session  
 		        $username = htmlspecialchars(trim($_POST['username']));
                 $_SESSION['username'] = $username;
+                error_log("sucessful login from form");
                 // redirect to display.php
                 header("Location: display.php");
                 exit;
             } else {
                 // bad password display error
                 $error = "Invalid Password";
+                error_log("failed login from form");
                 print($error);
             }
 
