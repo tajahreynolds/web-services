@@ -1,9 +1,12 @@
 <?php
+require_once 'config.php';   //get configuration
+require_once 'CAS.php';      //load CAS
+
 // start the session
 session_start();
 if (!isset($_SESSION['username']) && !isset($_POST['username'])):
     $username = "";
-
+    phpCAS::forceAuthentication();
 ?>
 <!DOCTYPE html>
 <html lang="en">
