@@ -10,6 +10,3 @@ $client_path = 'phpcas';
 $client_secure = true;
 $client_httpOnly = true;
 $client_lifetime = 0;
-// Initialize phpCAS from settings in config.php
-phpCAS::client(CAS_VERSION_2_0, $cas_host, $cas_port, $cas_context);
-phpCAS::setNoCasServerValidation();  // disables ssl server verification - ok for testing and required for now
