@@ -15,6 +15,8 @@ if (!isset($_SESSION['username'])){
 </head>
 
 <body>
-    <header><?php echo $username?></header>
+    <header><?php print($username) ?></header>
+    <div>
+
 </body>
 </html>
