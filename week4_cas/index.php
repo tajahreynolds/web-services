@@ -11,21 +11,16 @@ phpCAS::client(CAS_VERSION_2_0, $cas_host, $cas_port, $cas_context);
 phpCAS::setNoCasServerValidation();  // disables ssl server verification - ok for testing and required for now
 
 phpCAS::forceAuthentication();
+$username = phpCAS::getUser();
+$_SESSION['username'] = $username;
 
 // logout
 if (isset($_REQUEST['logout'])) {
 	phpCAS::logout();
-}
-
-$username = phpCAS::getUser();
-$_SESSION['username'] = $username;
-
-if (isset($_SESSION['username'])) {
-    $username = $_SESSION['username'];
-    error_log("login from session");
+} else {
+    error_log("login from CAS");
     header("Location: display.php");
-    exit;
-}                                                                        
+}                                                              
 ?>
 
 
