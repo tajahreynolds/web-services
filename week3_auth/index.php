@@ -72,7 +72,7 @@ if (isset($_POST['username']) && isset($_POST['password']) && $_POST['username']
         $stmt->fetch();
             if ($testpass == $storedPass) {
                 //good password -> set session  
-		        $username = $_POST['username'];
+		        $username = htmlspecialchars(trim($_POST['username']));
                 print($username);
                 // redirect to display.php
                 header("Location: display.php");
