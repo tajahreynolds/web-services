@@ -5,7 +5,7 @@ $cas_context = '';
 // Port of your CAS server. Normally for a https server it's 443
 $cas_port = 443;
 // Client config for cookie hardening
-$client_domain = 'ceclnx01.cec.miamioh.edu';
+$client_domain = 'reynolt4.451.csi.miamioh.edu';
 $client_path = 'phpcas';
 $client_secure = true;
 $client_httpOnly = true;
