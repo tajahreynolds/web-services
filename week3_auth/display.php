@@ -28,7 +28,7 @@ $username = $_SESSION['username'];
         <div id="msg"></div>
     </div>
 
-    <script>
+    <script defer>
         // set ajax params
         let settings = {
             "url": "http://ceclnx01.cec.miamioh.edu/~campbest/cse451-campbest-web-public-2021/week2/week2-rest.php/api/v1/info",
