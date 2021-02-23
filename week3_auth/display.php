@@ -13,6 +13,20 @@ $username = $_SESSION['username'];
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Display</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+
+    
+</head>
+
+<body>
+    <header><?php print($username) ?></header>
+    <div>
+        <table>
+            <tr><th>Key</th><th>Value</th></tr>
+            <tbody id="pairs"></tbody>
+        </table>
+    </div>
+    
     <script>
         // set ajax params
         let settings = {
@@ -42,16 +56,5 @@ $username = $_SESSION['username'];
         }
 
     </script>
-</head>
-
-<body>
-    <header><?php print($username) ?></header>
-    <div>
-        <table>
-            <tr><th>Key</th><th>Value</th></tr>
-            <tbody id="pairs"></tbody>
-        </table>
-    </div>
-
 </body>
 </html>
