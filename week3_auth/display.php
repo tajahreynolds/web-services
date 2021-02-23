@@ -50,15 +50,15 @@ $username = $_SESSION['username'];
             };
             // send query and process response
             $.ajax(settings).done(function (response) {
-                $("#pairs").append("<tr><td>" + key + "</td><td>" + response.value + "</td><td><button class='delete' key=" + key + " onclick='deleteEvent()'>Delete</button></td></tr>");
+                $("#pairs").append("<tr><td>" + key + "</td><td>" + response.value + "</td><td><button class='delete' key='" + key + "' onclick='deleteEvent()'>Delete</button></td></tr>");
             }).fail(function (error) {
                 console.error(error);
             });
         }
         // function to delete kv pairs from http://campbest.451.csi.miamioh.edu/button.php
         function deleteEvent() {
-            console.log("key is " + $(this).getAttribute('key'));
-            $("#msg").append("<ul>Key is " + $(this).getAttribute('key') + "</ul>");
+            console.log("key is " + $(this).attr('key'));
+            $("#msg").append("<ul>Key is " + $(this).attr('key') + "</ul>");
         }
 </script>
 </body>
