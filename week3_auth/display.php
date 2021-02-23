@@ -19,14 +19,14 @@ $username = $_SESSION['username'];
 </head>
 
 <body>
-    <header><?php print($username) ?></header>
+    <header>User: <?php print($username) ?></header>
     <div>
         <table>
             <tr><th>Key</th><th>Value</th></tr>
             <tbody id="pairs"></tbody>
         </table>
     </div>
-    
+
     <script>
         // set ajax params
         let settings = {
@@ -49,12 +49,19 @@ $username = $_SESSION['username'];
             };
             // send query and process response
             $.ajax(settings).done(function (response) {
-                $("#pairs").append("<tr><td>" + key + "</td><td>" + response.value + "</td></tr>");
+                $("#pairs").append("<tr><td>" + key + "</td><td>" + response.value + "</td><td><button class='delete' key=" + key + ">Delete</button></td></tr>");
             }).fail(function (error) {
                 console.error(error);
             });
         }
-
-    </script>
+        // function to delete kv pairs from http://campbest.451.csi.miamioh.edu/button.php
+        function deleteEvent(event) {
+            console.log("key is " + $(this).attr('key'));
+            $("#msg").append("<ul>Key is " + $(this).attr('key') + "</ul>");
+        }
+        $(document).ready(() => {
+            $(".delete").click(deleteEvent);
+        });
+</script>
 </body>
 </html>
