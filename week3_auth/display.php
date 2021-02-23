@@ -57,8 +57,8 @@ $username = $_SESSION['username'];
         }
         // function to delete kv pairs from http://campbest.451.csi.miamioh.edu/button.php
         function deleteEvent() {
-            console.log("key is " + $(this).attr('key'));
-            $("#msg").append("<ul>Key is " + $(this).attr('key') + "</ul>");
+            console.log("key is " + $(this).getAttribute('key'));
+            $("#msg").append("<ul>Key is " + $(this).getAttribute('key') + "</ul>");
         }
 </script>
 </body>
