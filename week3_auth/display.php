@@ -30,7 +30,7 @@ $username = $_SESSION['username'];
     <script>
         // set ajax params
         let settings = {
-            "url": "http://ceclnx01.cec.miamioh.edu/~campbest/cse451-campbest-web-public/week2/week2-rest.php/api/v1/info",
+            "url": "http://ceclnx01.cec.miamioh.edu/~campbest/cse451-campbest-web-public-2021/week2/week2-rest.php/api/v1/info",
             "method": "GET",
             "timeout": 0,
         };
@@ -43,7 +43,7 @@ $username = $_SESSION['username'];
         function addToTable(key) {
             // set ajax params
             let settings = {
-                "url": "http://ceclnx01.cec.miamioh.edu/~campbest/cse451-campbest-web-public/week2/week2-rest.php/api/v1/info",
+                "url": "http://ceclnx01.cec.miamioh.edu/~campbest/cse451-campbest-web-public-2021/week2/week2-rest.php/api/v1/info",
                 "method": "GET",
                 "timeout": 0,
             };
