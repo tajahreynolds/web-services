@@ -25,7 +25,7 @@ $username = $_SESSION['username'];
             <tr><th>Key</th><th>Value</th></tr>
             <tbody id="pairs"></tbody>
         </table>
-        <p id="msg"></p>
+        <div id="msg"></div>
     </div>
 
     <script>
