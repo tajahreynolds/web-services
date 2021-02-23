@@ -57,8 +57,13 @@ $username = $_SESSION['username'];
         }
         // function to delete kv pairs from http://campbest.451.csi.miamioh.edu/button.php
         function deleteEvent() {
-            console.log("key is " + this.hasAttribute('key'));
-            $("#msg").append("<ul>Key is " + this.key);
+            var attr = $(this).attr('key');
+            // For some browsers, `attr` is undefined; for others, `attr` is false. Check for both.
+            if (typeof attr !== typeof undefined && attr !== false) {
+                // Element has this attribute
+                console.log("key is " + this.hasAttribute('key'));
+                $("#msg").append("<ul>Key is " + this.key);
+            }
         }
 </script>
 </body>
