@@ -24,17 +24,29 @@ phpCAS::forceAuthentication();
 
 $username = phpCAS::getUser();
 $_SESSION['username'] = $username;
+$_SESSION['lastSeen'] = time();
 
-// logout
-if (isset($_REQUEST['logout'])) {
-	phpCAS::logout();
-} else {
+if (isset($_POST['display'])) {
     error_log("login from CAS");
     header("Location: display.php");
-}                                                              
+}
+
+
 ?>
 
-
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CAS VERIFIED</title>
+  </head>
+  <body>
+    <h1>Successful Authentication!</h1>
+    <p>WELCOME <b><?php echo $username ?></b>.</p>
+    <form action="display.php" method="post">
+	<input type="submit" name="display" value="display">
+    </form>
+  </body>
+</html>
 
 
 

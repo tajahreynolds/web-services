@@ -5,8 +5,24 @@ if (!isset($_SESSION['username'])){
     header("Location: index.php");
     error_log("logout from display: no session username set");
     exit();
+} else {
+	$username = $_SESSION['username'];
 }
-$username = $_SESSION['username'];
+
+$lastSeen = 0;
+if (isset($_SESSION['lastSeen'])) {
+	$lastSeen = $_SESSION['lastSeen'];
+}
+
+if ((time() - $lastSeen) > 60) { 
+	header("Location: index.php");
+	error_log("logout from display: session timeout");
+	exit();
+}
+
+$_SESSION['lastSeen'] = time();
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +57,7 @@ $username = $_SESSION['username'];
     <script>
         // set ajax params
         let settings = {
-            "url": "http://ceclnx01.cec.miamioh.edu/~campbest/cse451-campbest-web-public-2021/week2/week2-rest.php/api/v1/info",
+            "url": "https://ceclnx01.cec.miamioh.edu/~campbest/cse451-campbest-web-public-2021/week2/week2-rest.php/api/v1/info",
             "method": "GET",
             "timeout": 0,
         };
@@ -51,12 +67,13 @@ $username = $_SESSION['username'];
                 addToTable(key);
             }
         }).fail(function (error) {
-                <?php error_log(error) ?>
+		console.error(error);
+		<?php error_log("ajax query failed"); ?>
         });
         function addToTable(key) {
             // set ajax params
             let settings = {
-                "url": "http://ceclnx01.cec.miamioh.edu/~campbest/cse451-campbest-web-public-2021/week2/week2-rest.php/api/v1/info",
+                "url": "https://ceclnx01.cec.miamioh.edu/~campbest/cse451-campbest-web-public-2021/week2/week2-rest.php/api/v1/info",
                 "method": "GET",
                 "timeout": 0,
             };
@@ -65,7 +82,7 @@ $username = $_SESSION['username'];
                 $("#pairs").append("<tr><td>" + key + "</td><td>" + response.value + "</td><td><button class='delete' key=" + key + " onclick='deleteEvent()'>Delete</button></td></tr>");
             }).fail(function (error) {
                 console.error(error);
-                <?php error_log("unable to query") ?>
+                <?php error_log("ajax query failed"); ?>
             });
         }
         

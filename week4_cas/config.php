@@ -1,3 +1,4 @@
+<?php
 // Full Hostname of your CAS Server
 $cas_host = 'auth.miamioh.edu/cas';
 // Context of the CAS Server
@@ -10,3 +11,4 @@ $client_path = 'phpcas';
 $client_secure = true;
 $client_httpOnly = true;
 $client_lifetime = 0;
+?>
