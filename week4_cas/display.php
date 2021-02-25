@@ -63,7 +63,7 @@ $_SESSION['lastSeen'] = time();
         };
         // send query
         $.ajax(settings).done(function (response) {
-            for (let key in response.keys) {
+		for (let key in response.keys) {
                 addToTable(key);
             }
         }).fail(function (error) {
@@ -73,12 +73,13 @@ $_SESSION['lastSeen'] = time();
         function addToTable(key) {
             // set ajax params
             let settings = {
-                "url": "https://ceclnx01.cec.miamioh.edu/~campbest/cse451-campbest-web-public-2021/week2/week2-rest.php/api/v1/info",
+                "url": "https://ceclnx01.cec.miamioh.edu/~campbest/cse451-campbest-web-public-2021/week2/week2-rest.php/api/v1/info/" + key,
                 "method": "GET",
                 "timeout": 0,
             };
             // send query and process response
-            $.ajax(settings).done(function (response) {
+	    $.ajax(settings).done(function (response) {
+		    console.log(response);
                 $("#pairs").append("<tr><td>" + key + "</td><td>" + response.value + "</td><td><button class='delete' key=" + key + " onclick='deleteEvent()'>Delete</button></td></tr>");
             }).fail(function (error) {
                 console.error(error);
