@@ -1,6 +1,6 @@
 <x-main-layout>
 <x-slot name="pageTitle">
-Scott Campbell
+TaJah Reynolds
 </x-slot>
 
 <div class="row">

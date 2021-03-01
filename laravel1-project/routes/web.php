@@ -20,7 +20,7 @@ Route::get('/', function () {
 });
 
 Route::get('/about',function() {
-	$d['name'] = "campbest";
+	$d['name'] = "reynolt4";
 	$d['data'] = array();
 	for ($i=0;$i<10;$i++) {
 		array_push($d['data'],rand(0,100));
@@ -30,3 +30,5 @@ Route::get('/about',function() {
 
 
 Route::get("/room",[RoomController::class,'index']);
+Route::get("/room/add",[RoomController::class,'addForm']);
+Route::post("/room/add",[RoomController::class,'add']);
