@@ -1,17 +1,20 @@
 <?php 
 session_start();
-if (isset($_POST['hazel']))
+if (isset($_POST['hazel']) && $_POST['hazel'] != '')
 {
-if (hazel%2 == 0) 
-{
-print "even";
-} else
-{
-	for (int i = 0; i < hazel; i++) {
-		print "random";
+	$hazel = $_POST['hazel'];
+	if ($hazel%2 == 0) 
+	{
+		print "even";
+	} else
+	{
+		for ($i = 0; $i < $hazel; $i++) {
+			print "random";
+		}
 	}
 }
-}
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,4 +31,4 @@ Number: <input type="number" name="hazel"><br>
 </body>
 </html>
 
-?>
+

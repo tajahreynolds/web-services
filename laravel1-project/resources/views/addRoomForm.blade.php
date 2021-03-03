@@ -2,7 +2,7 @@
 <x-slot name="pageTitle">Add A Room</x-slot>
 
 @if ($errors->any())
-<div cless="alert alert-danger">
+<div class="alert alert-danger">
 <strong>Oops!</strong> Your input was not accepted.<br><br>
 <ul>
 @foreach ($errors->all() as $error)
