@@ -8,14 +8,21 @@
 </div>
 @endif
 <table class='table'>
-<tr><td>Name</td><td>Capacity</td>
-<td>Department</td><td>Description</td>
+<tr><td>Building Name</td><td>Room Number</td><td>Capacity</td>
+<td>Department</td><td>Description</td><td>Image</td>
 </tr>
 @foreach ($roomCollection as $room)
-<tr><td>{{$room->roomName}}</td>
+<tr>
+<td>{{$room->buildingName}}</td>
+<td>{{$room->roomNum}}</td>
 <td>{{$room->capacity}}</td>
 <td>{{$room->dept}}</td>
 <td>{{$room->description}}</td>
+@if (strcmp($room->image,'') == 0)
+<td>&nbsp;</td>
+@else
+<td><a href={{$room->image}}>Image</a></td>
+@endif
 </tr>
 @endforeach
 </table>
