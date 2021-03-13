@@ -19,4 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get("/temp",[WeatherController::class, "getTemp"]);
+Route::get('/temp/{zip}', [WeatherController::class,'getTemp']);

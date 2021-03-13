@@ -28,14 +28,14 @@ class WeatherController extends Controller {
 			}
 			// set lat, lon, and api key into uri
 			$uri = 'weather?lat='.$lat.'&lon='.$lon.'&units=imperial&appid='.$key;
-			// guzzle call to get temp
+			// create guzzle client
 			$client = new Client([
 				'base_uri' => 'https://api.openweathermap.org/data/2.5/',
 				'timeout' => 2.0
 			]);
 		
 			try {
-				echo $uri;	
+				// guzzle call to get temp	
 			} catch (RequestException $e) {
 				echo Psr7\Message::toString($e->getRequest());
 				if ($e->hasResponse()) {
@@ -75,6 +75,7 @@ class WeatherController extends Controller {
 			if ($json === false) {
 				$json = '{"jsonError":"unknown"}';
 			}
+			console.log($json);
 			return $json;
 		} catch (RequestException $e) {
 			echo Psr7\Message::toString($e->getRequest());
