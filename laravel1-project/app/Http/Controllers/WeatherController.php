@@ -10,6 +10,43 @@ use \GuzzleHttp\Exception\RequestException;
 
 class WeatherController extends Controller {
 	/**
+	 * Get the latitude and longitude for a given zip code
+	 * 
+	 */
+	private function getLatLon($zip) {
+		// get the api key from .env
+		$key = env('OPENWEATHER_API_KEY','');
+		if ($key == "") {
+			die ("API KEY NOT DEFINED");
+		}
+		// set the apikey and zipcode into uri
+		$uri = 'zip?appid='.$key.'&zip='.$zip;
+		// guzzle call to get lat/lon
+		$client = newClient([
+			'base_uri' => 'https://api.openweathermap.org/geo/1.0/',
+			'timeout' => 2.0
+		]);	
+
+		try {
+			// send a request to https://api.openweathermap.org/geo/1.0/ with api key and zip
+			$response = $client->request('GET', $uri);
+			// decode json response
+			$json = json_decode($response()->getBody(), true);
+			// check if json is valid
+			if ($json === false) {
+				$json = '{"jsonError":"unknown"}';
+			}
+			console.log($json);
+			return $json;
+		} catch (RequestException $e) {
+			echo Psr7\Message::toString($e->getRequest());
+			if ($e->hasResponse()) {
+				echo Pser7\Message::toString($e->getResponse());
+			}
+	    }
+	}
+	
+	/**
 	 * Get the temperature
 	 *
 	 */
@@ -46,42 +83,5 @@ class WeatherController extends Controller {
 			// store temp in the cache
 			Cache::put('temp', $temp, $seconds=15);
 		}
-	}
-
-	/**
-	 * Get the latitude and longitude for a given zip code
-	 * 
-	 */
-	private function getLatLon($zip) {
-		// get the api key from .env
-		$key = env('OPENWEATHER_API_KEY','');
-		if ($key == "") {
-			die ("API KEY NOT DEFINED");
-		}
-		// set the apikey and zipcode into uri
-		$uri = 'zip?appid='.$key.'&zip='.$zip;
-		// guzzle call to get lat/lon
-		$client = newClient([
-			'base_uri' => 'https://api.openweathermap.org/geo/1.0/',
-			'timeout' => 2.0
-		]);	
-
-		try {
-			// send a request to https://api.openweathermap.org/geo/1.0/ with api key and zip
-			$response = $client->request('GET', $uri);
-			// decode json response
-			$json = json_decode($response()->getBody(), true);
-			// check if json is valid
-			if ($json === false) {
-				$json = '{"jsonError":"unknown"}';
-			}
-			console.log($json);
-			return $json;
-		} catch (RequestException $e) {
-			echo Psr7\Message::toString($e->getRequest());
-			if ($e->hasResponse()) {
-				echo Pser7\Message::toString($e->getResponse());
-			}
-	        }
 	}
 }
