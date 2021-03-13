@@ -4,7 +4,8 @@ function apiCall() {
 		url: "http://reynolt4.451.csi.miamioh.edu/cse451-reynolt4-web/laravel1-project/public/index.php/api/temp/" + zip,
 		method: "GET"
 	}).done(function(data) {
-		console.log(data);
+		$("#temp").text("" + data.temp + " (" + data.status + ")");
+		$("#city").text(data.city);
 	});
 }
 

@@ -50,7 +50,6 @@ class WeatherController extends Controller {
 	 *
 	 */
 	public function getTemp($zip) {
-		$temp = '';
 		if (Cache::has('temp')) {
 			$temp = Cache::get('temp');
 			$temp['status'] = "CACHE";
@@ -81,7 +80,7 @@ class WeatherController extends Controller {
 				if ($json === false) {                            
 						$temp = '{"jsonError":"unknown"}';        
 				} else {
-					$temp =	json_decode('{"status":"LIVE","temp":'.$json['main']['temp'].',"city":"'.$json['name'].'"}', true);
+					$temp =	json_decode('{"status":"LIVE","temp":'.$json['main']['temp'].',"city":"'.$json['name'].'","zip":'.$zip.'}', true);
 				}
 			} catch (RequestException $e) {
 				echo Psr7\Message::toString($e->getRequest());
