@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use \GuzzleHttp\Client;
@@ -23,7 +22,7 @@ class WeatherController extends Controller {
 		// set the apikey and zipcode into uri
 		$uri = 'zip?appid='.$key.'&zip='.$zip;
 		// guzzle call to get lat/lon
-		$client = newClient([
+		$client = new Client([
 			'base_uri' => 'https://api.openweathermap.org/geo/1.0/',
 			'timeout' => 2.0
 		]);	
@@ -32,12 +31,11 @@ class WeatherController extends Controller {
 			// send a request to https://api.openweathermap.org/geo/1.0/ with api key and zip
 			$response = $client->request('GET', $uri);
 			// decode json response
-			$json = json_decode($response()->getBody(), true);
+			$json = json_decode($response->getBody(), true);
 			// check if json is valid
 			if ($json === false) {
 				$json = '{"jsonError":"unknown"}';
 			}
-			console.log($json);
 			return $json;
 		} catch (RequestException $e) {
 			echo Psr7\Message::toString($e->getRequest());
@@ -52,8 +50,10 @@ class WeatherController extends Controller {
 	 *
 	 */
 	public function getTemp($zip) {
+		$temp = '';
 		if (Cache::has('temp')) {
 			$temp = Cache::get('temp');
+			$temp['status'] = "CACHE";
 		} else {
 			// get latitude and longitude from zip code
 			$json = self::getLatLon($zip);
@@ -76,13 +76,13 @@ class WeatherController extends Controller {
 				// guzzle call to get temp	
 				$response = $client->request('GET', $uri);        
 				// decode json response                           
-				$json = json_decode($response()->getBody(), true);
+				$json = json_decode($response->getBody(), true);
 				// check if json is valid                         
 				if ($json === false) {                            
-						$json = '{"jsonError":"unknown"}';        
-				}                                                 
-				console.log($json);                               
-				return $json;                                     
+						$temp = '{"jsonError":"unknown"}';        
+				} else {
+					$temp =	json_decode('{"status":"LIVE","temp":'.$json['main']['temp'].',"city":"'.$json['name'].'"}', true);
+				}
 			} catch (RequestException $e) {
 				echo Psr7\Message::toString($e->getRequest());
 				if ($e->hasResponse()) {
@@ -93,5 +93,6 @@ class WeatherController extends Controller {
 			// store temp in the cache
 			Cache::put('temp', $temp, $seconds=15);
 		}
+		return $temp;
 	}
 }
