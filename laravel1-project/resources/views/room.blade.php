@@ -2,6 +2,10 @@
 <x-slot name="pageTitle">
   Room List
 </x-slot>
+<x-slot name="SCRIPT">temp.js</x-slot>
+<div class="mx-auto">The temperature is <span id="temp"></span></div>
+<div>City: <span id="city"></span></div>
+<div>Zipcode: <input type="text" name="zip" id="zip"></div>
 @if ($message = Session::get('success'))
 <div class="alert alert-success">
 <p>{{ $message }}</p>

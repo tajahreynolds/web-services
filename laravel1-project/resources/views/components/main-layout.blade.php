@@ -22,6 +22,10 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
 
+@isset($SCRIPT)
+<script src="{{env('APP_URL')}}/{{$SCRIPT}}"></script>
+@endisset
+
 <style>
 .starter-template {
   padding: 3rem 1.5rem;
