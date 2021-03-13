@@ -55,7 +55,7 @@ class WeatherController extends Controller {
 			$temp = Cache::get('temp');
 		} else {
 			// get latitude and longitude from zip code
-			$json = getLatLon($zip);
+			$json = self::getLatLon($zip);
 			$lat = $json['lat'];
 			$lon = $json['lon'];
 			// get api key from .env
