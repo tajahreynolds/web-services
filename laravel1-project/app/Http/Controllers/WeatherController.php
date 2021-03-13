@@ -73,6 +73,15 @@ class WeatherController extends Controller {
 		
 			try {
 				// guzzle call to get temp	
+				$response = $client->request('GET', $uri);        
+				// decode json response                           
+				$json = json_decode($response()->getBody(), true);
+				// check if json is valid                         
+				if ($json === false) {                            
+						$json = '{"jsonError":"unknown"}';        
+				}                                                 
+				console.log($json);                               
+				return $json;                                     
 			} catch (RequestException $e) {
 				echo Psr7\Message::toString($e->getRequest());
 				if ($e->hasResponse()) {
