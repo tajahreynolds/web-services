@@ -1,5 +1,5 @@
 $(document).ready(() => {
-	$ajax({
+	$.ajax({
 		url: 'api/todo'
 	}).done(function(data) {
 		for (i = 0; i < data.tasks.length; i++) {
@@ -9,4 +9,4 @@ $(document).ready(() => {
 		console.error(error);
 		$("#msg").html("Error retrieving data");
 	});
-}
+});

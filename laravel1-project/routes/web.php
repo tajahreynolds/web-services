@@ -32,3 +32,6 @@ Route::get('/about',function() {
 Route::get("/room",[RoomController::class,'index']);
 Route::get("/room/add",[RoomController::class,'addForm']);
 Route::post("/room/add",[RoomController::class,'add']);
+Route::get("/todo", function () {
+	return view('todo');
+});
