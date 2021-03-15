@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WeatherController;
-
+use App\Http\Controllers\TodoistController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,3 +20,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/temp/{zip}', [WeatherController::class,'getTemp']);
+Route::get('/todo', [TodoistController::class, 'getTodo']);
