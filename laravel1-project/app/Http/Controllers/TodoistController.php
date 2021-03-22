@@ -42,8 +42,39 @@ class TodoistController extends Controller
 		} catch (RequestException $e) {
 			echo Psr7\Message::toString($e->getRequest());
 			if ($e->hasResponse()) {
-				echo Pser7\Message::toString($e->getResponse());
+				echo Psr7\Message::toString($e->getResponse());
 			}	
+		}
+	}
+	public function getTasks($token, $id) {
+		// get api key from env
+		$key = env('TODOIST_API_KEY');
+		// create guzzle client
+		$client = new Client([
+			'base_uri' => 'https://api.todoist.com/rest/v1/'
+		]);
+		// prepare auth headers
+		$headers = ['Authorization' => 'Bearer '.$token];
+		// try guzzle call
+		try {
+			$response = $client->request('GET', 'tasks?project_id='.$id, ['headers' => $headers]);
+			$json = json_decode($response->getBody(), true);
+			if ($json === false) {
+				$ret = json_decode('{"status":"FAIL","tasks":[]', true);
+			} else {
+				$temp = '{"status":"OK","tasks":[';
+				foreach ($json as $task) {
+					$temp = $temp.'"'.$task['content'].'",';
+				}
+                                $temp = substr($temp,0,-1).']}';
+				$ret = json_decode($temp, true);
+			}
+			return $ret;
+		} catch (RequestException $e) {
+			echo Psr7\Message::toString($e->getRequest());
+			if ($e->hasResponse()) {
+				echo Psr7\Message::toString($e->getResponse());
+			}
 		}
 	}
 }

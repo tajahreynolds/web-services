@@ -21,3 +21,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/temp/{zip}', [WeatherController::class,'getTemp']);
 Route::get('/todo', [TodoistController::class, 'getTodo']);
+Route::get('/todo/{token}/{id}', [TodoistController::class, 'getTasks']);

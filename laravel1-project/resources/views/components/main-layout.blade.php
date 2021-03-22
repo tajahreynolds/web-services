@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>{{$title ?? 'Room Reservations'}}</title>
+    <title>{{$pageTitle ?? 'Room Reservations'}}</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/starter-template/">
 
@@ -52,8 +52,8 @@
 <a class='btn btn-info' href='./'>Home</a>
 <a class='btn btn-info' href='{{ env('APP_URL')}}/index.php/about'>about</a>
 <a class='btn btn-info' href='{{ env('APP_URL')}}/index.php/room'>Room Listing</a>
-<a class='btn btn-info' href='{{ env('APP_URL')}}/index.php/room/add'>Add Room</a>
-<a class='btn btn-info' href='{{ env('APP_URL')}}/index.php/todo'>Todo List</a>
+<a class='btn btn-info' href='{{ env('APP_URL')}}/index.php/room/add'>Add a Room</a>
+<a class='btn btn-info' href='{{ env('APP_URL')}}/index.php/todo'>ToDo List</a>
 <a class='btn btn-info' href='{{ env('APP_URL')}}/index.php/todoistoauth'>Todoist OAUTH</a>
 </footer>
 

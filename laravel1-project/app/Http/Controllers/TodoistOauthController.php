@@ -44,13 +44,14 @@ class TodoistOauthController extends Controller
 			// redirect user to todoist to grant access
 			return redirect('https://todoist.com/oauth/authorize?client_id='.env('TODOIST_CLIENT_ID').'&scope=data:read&state='.env('TODOIST_SECRET'));
 		}
+		$token = $_SESSION['token'];
 		// once we are here we should have a token
 		// create guzzle client
 		$client = new Client([
 			'base_uri' => 'https://api.todoist.com/rest/v1/'
 		]);
 		// prepare auth headers
-		$headers = ['Authorization' => 'Bearer '.$_SESSION['token']];
+		$headers = ['Authorization' => 'Bearer '.$token];
 		// access todoist with token
 		try {
 			$response = $client->request('GET', 'projects', ['headers' => $headers]);
@@ -60,9 +61,9 @@ class TodoistOauthController extends Controller
 			if ($json === false) {
 				die("Invalid response");
 			}
+			// var_dump($json);
 			// return view with data
-			var_dump($json);
-			// return view('projects', ['projects' => $json]);
+			return view('todoOauth')->with('projects',$json)->with(compact('token'));
 		} catch (RequestException $e) {
 		        echo Psr7\Message::toString($e->getRequest());          
 			if ($e->hasResponse()) {                                
