@@ -4,7 +4,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\TodoistOauthController;
-
+use App\Http\Controllers\S3Controller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,3 +39,4 @@ Route::get("/todo", function () {
 });
 
 Route::get("/todoistoauth",[TodoistOauthController::class, 'index']);
+Route::get('/s3', [S3Controller::class, 'index']);

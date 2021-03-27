@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WeatherController;
 use App\Http\Controllers\TodoistController;
+use App\Http\Controllers\S3Controller;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,5 +22,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/temp/{zip}', [WeatherController::class,'getTemp']);
+
 Route::get('/todo', [TodoistController::class, 'getTodo']);
 Route::get('/todo/{token}/{id}', [TodoistController::class, 'getTasks']);
+
+Route::get('/s3', [S3Controller::class, 'getContent']);
+Route::put('/s3', [S3Controller::class, 'putContent']);
